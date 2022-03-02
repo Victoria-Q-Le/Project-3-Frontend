@@ -3,7 +3,10 @@ import './App.css';
 
 function App() {
   return (
+    <main>
+        <h1>Noted</h1>
 
+    </main>
   );
 }
 
