@@ -34,7 +34,19 @@ function Home() {
       return Math.floor(Math.random()  * params.length )
   }
 
-console.log(description);
+  const handleDelete = (descriptionData)=>{
+      axios 
+           .delete(`http://localhost:3000/notes/${descriptionData._id}`)
+           .then(()=>{
+                axios
+                    .get('http://localhost:3000/notes')
+                    .then((response)=>{
+                        setDescription(response.data)
+                    })
+           })
+  }
+
+console.log(description)
 
 
   return (
@@ -45,12 +57,14 @@ console.log(description);
             <form onSubmit={handleNewDescriptionFormSubmit}>
                   User: <input type='text' /><br/>
                   Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
-                  <input type='submit' class='btn' value='Send Love'/>
+                  <input type='submit' className='btn' value='Send Love'/>
             </form>
           </section>
         <section>
-            <h1>Message from a stranger: {description[displayDescription(description)]?.description}</h1>
+            <h1 key={description._id}> Message from a strangers: {description[displayDescription(description)]?.description}
+            <button onClick={(event)=> {handleDelete(description)}}>Delete Note</button></h1>
         </section>
+
     </main>
   );
 }
