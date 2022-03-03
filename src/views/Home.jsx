@@ -1,5 +1,8 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import WebFont from 'webfontloader';
+
+
 
 function Home() {
 
@@ -46,25 +49,47 @@ function Home() {
            })
   }
 
+const handleToggleRead = (descriptionData)=>{
+    axios
+        .put(
+            `http://localhost:3000/notes/${descriptionData._id}`,
+            {
+                description:descriptionData.description,
+                complete:!descriptionData.complete
+            }
+        )
+        .then(()=>{
+            axios
+                .get('http://localhost:3000/notes')
+                .then((response)=>{
+                    setDescription(response.data)
+                })
+        })
+}
+
 console.log(description)
 
-
   return (
+
     <main>
-        <h1>Noted</h1>
-          <section>
-            <h2>Send a positive messege to a stranger</h2>
-            <form onSubmit={handleNewDescriptionFormSubmit}>
+        <h1 className='title'>Noted</h1>
+        <h2 className='subtitle'>Somone wrote this for you</h2>
+
+        
+        <section>
+            <h1 className='msg' onClick={(event)=>{handleToggleRead(description)}}> Message from a strangers: {description[displayDescription(description)]?.description}</h1>
+            <center><button className='btndlt' onClick={(event)=> {handleDelete(description)}}>Delete Note</button></center><br/><br/><br/>
+
+        </section>
+        <section>
+        <center><h2 className='subtitle2'>Send a positive messege to a stranger</h2>
+
+           <form className='form' onSubmit={handleNewDescriptionFormSubmit}>
                   User: <input type='text' /><br/>
                   Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
                   <input type='submit' className='btn' value='Send Love'/>
-            </form>
+            </form></center>
           </section>
-        <section>
-            <h1 key={description._id}> Message from a strangers: {description[displayDescription(description)]?.description}
-            <button onClick={(event)=> {handleDelete(description)}}>Delete Note</button></h1>
-        </section>
-
     </main>
   );
 }
