@@ -1,19 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
-
+import {Routes, Route} from 'react-router-dom'
+import Home from './views/Home';
 function App() {
 
-  const [newnote, setNewnote] = useState('')
+  
 
-  const hanldeNewNoteChange = (event) =>{
-    setNewNote(event.target.vaule);
-  }
 
   return (
-    <main>
-        <h1>Noted</h1>
-    </main>
+    <div>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+        </Routes>
+    </div>
   );
 }
 
