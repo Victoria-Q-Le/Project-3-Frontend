@@ -63,22 +63,32 @@ background-image: -webkit-linear-gradient(346deg, #FAACA8 0%, #DDD6F3 100%);
    background-position: right center; /* change the direction of the change here */
    color: #fff;
    text-decoration: none;
+
+   
  }
 
  .title, .subtitle , .msg, .btnD{
   text-align: center;
+
+
   }
 
   .title{
     margin-top: 3em;
+
+
   }
 
   .subtitle2{
     margin-top: 5em;
+
+
   }
 
   .msg{
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+
+
   }
   
