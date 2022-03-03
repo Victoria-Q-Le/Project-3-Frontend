@@ -77,7 +77,7 @@ console.log(description)
 
         
         <section>
-            <h1 className='msg' onClick={(event)=>{handleToggleRead(description)}}> Message from a strangers: {description[displayDescription(description)]?.description}</h1>
+            <h1 className='msg' onClick={(event)=>{handleToggleRead(description)}}>{description[displayDescription(description)]?.description}</h1>
             <center><button className='btndlt' onClick={(event)=> {handleDelete(description)}}>Delete Note</button></center><br/><br/><br/>
 
         </section>
