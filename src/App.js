@@ -31,6 +31,7 @@ function App() {
           })
   },)
 
+
   return (
     <main>
         <h1>Noted</h1>
@@ -41,11 +42,7 @@ function App() {
                   Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
                   <input type='submit' value='Send Love'/>
             </form>
-
-
-
-
-
+            
           </section>
     </main>
   );
