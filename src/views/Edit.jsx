@@ -10,8 +10,14 @@ export default function Edit() {
     const [newDescription, setNewDescription] = useState('')
 
 
+    useEffect(()=>{
+      axios
+            .get( 'http://localhost:3000/notes')
+            .then((response)=>{
+            setDescription(response.data)
+            })
+    },[])
 
-    
 
     const displayDescription = (params) => {
         return Math.floor(Math.random()  * params.length )
@@ -52,6 +58,6 @@ export default function Edit() {
         </section>
 
     </div>
-    
+
   )
 }
