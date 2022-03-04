@@ -7,15 +7,10 @@ export default function Edit() {
     const {id} = useParams()
     console.log(id);
     const [description, setDescription] = useState([])
+    const [newDescription, setNewDescription] = useState('')
 
 
-    useEffect(()=>{
-      axios
-            .get( 'http://localhost:3000/notes')
-            .then((response)=>{
-            setDescription(response.data)
-            })
-    },[])
+
 
 
     const displayDescription = (params) => {
@@ -49,11 +44,11 @@ export default function Edit() {
             <h1 className='msg'>{description[displayDescription(description)]?.description}</h1>
 
             <section>
-              <form className='form' onSubmit={handleEdit(description[displayDescription(description)])}>
+        <form className='form' onSubmit={handleEdit(description[displayDescription(description)])}>
                         User: <input type='text' /><br/>
                         Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
                         <input type='submit' className='btn' value='Send Love'/>
-              </form>
+                    </form>
         </section>
 
     </div>
