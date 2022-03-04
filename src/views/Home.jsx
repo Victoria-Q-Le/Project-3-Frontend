@@ -99,13 +99,7 @@ console.log(description[displayDescription(description)]);
             </form></center>
           </section>
 
-        <section>
-        {/* <form className='form' onSubmit={handleEdit(description[displayDescription(description)])}>
-                        User: <input type='text' /><br/>
-                        Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
-                        <input type='submit' className='btn' value='Send Love'/>
-                    </form> */}
-        </section>
+       
 
     </main>
 
