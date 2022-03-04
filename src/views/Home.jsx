@@ -71,6 +71,8 @@ const handleDelete = (descriptionData)=>{
          })
 }
 
+
+
 console.log(description[displayDescription(description)]); 
   return (
 
