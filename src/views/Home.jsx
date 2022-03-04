@@ -71,8 +71,6 @@ const handleDelete = (descriptionData)=>{
          })
 }
 
-
-
 console.log(description[displayDescription(description)]); 
   return (
 
@@ -86,7 +84,7 @@ console.log(description[displayDescription(description)]);
             <center>
                 <button className='btndlt' onClick={(event)=> {handleDelete(description[displayDescription(description)])}}>Delete Note</button></center><br/><br/><br/>
                 {/* <button className='btnedt' onClick={(event)=> {handleEdit(description[displayDescription(description)])}}>edit note</button> */}
-                <Link to={`/editNotes/${(description[displayDescription(description)])._id}`}>Edit Notes</Link>
+                {/* <Link to={`/editNotes/${(description[displayDescription(description)])._id}`}>Edit Notes</Link> */}
         </section>
 
 
@@ -101,7 +99,13 @@ console.log(description[displayDescription(description)]);
             </form></center>
           </section>
 
-       
+        <section>
+        {/* <form className='form' onSubmit={handleEdit(description[displayDescription(description)])}>
+                        User: <input type='text' /><br/>
+                        Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
+                        <input type='submit' className='btn' value='Send Love'/>
+                    </form> */}
+        </section>
 
     </main>
 
