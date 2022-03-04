@@ -42,23 +42,6 @@ function Home() {
 
 
 
-const handleEdit = (descriptionData)=>{
-    axios
-        .put(
-            `http://localhost:3000/notes/${descriptionData._id}`,
-            {
-                description:descriptionData?.description,
-            }
-        )
-        .then(()=>{
-            axios
-                .get('http://localhost:3000/notes')
-                .then((response)=>{
-                    // setDescription(response.data)
-                    console.log(response.data);
-                })
-        })
-}
 const handleDelete = (descriptionData)=>{
     axios
          .delete(`http://localhost:3000/notes/${descriptionData._id}`)
