@@ -38,7 +38,7 @@ function Home() {
   }
 
   const handleDelete = (descriptionData)=>{
-      axios 
+      axios
            .delete(`http://localhost:3000/notes/${descriptionData._id}`)
            .then(()=>{
                 axios
