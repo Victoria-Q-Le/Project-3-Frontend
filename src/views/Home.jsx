@@ -31,10 +31,8 @@ function Home() {
             'http://localhost:3000/notes',
           {
             description:newDescription
-          })
-          .then(() => {
-            window.location.reload()
-          })
+          }
+        )
   }
 
 
