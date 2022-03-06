@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import Header from '../components/Header.jsx'
 
 
 
@@ -25,12 +26,15 @@ function Home() {
 
   const handleNewDescriptionFormSubmit = (event) => {
         event.preventDefault();
-        axios.post(
-          'http://localhost:3000/notes',
+        axios
+          .post(
+            'http://localhost:3000/notes',
           {
             description:newDescription
-          }
-        )
+          })
+          .then(() => {
+            window.location.reload()
+          })
   }
 
 
@@ -75,16 +79,21 @@ console.log(description[displayDescription(description)]);
   return (
 
     <main>
-        <h1 className='title'>Noted</h1>
+
+        <Header />
         <h2 className='subtitle'>Somone wrote this for you</h2>
 
 
         <section>
             <h1 className='msg'>{description[displayDescription(description)]?.description}</h1>
             <center>
-                <button className='btndlt' onClick={(event)=> {handleDelete(description[displayDescription(description)])}}>Delete Note</button></center><br/><br/><br/>
-                {/* <button className='btnedt' onClick={(event)=> {handleEdit(description[displayDescription(description)])}}>edit note</button> */}
-                {/* <Link to={`/editNotes/${(description[displayDescription(description)])._id}`}>Edit Notes</Link> */}
+                <button className='btndlt' onClick={(event)=> {handleDelete(description[displayDescription(description)])}}>Delete Note</button>
+                <br></br>
+                <button className='btndlt' >Edit Note</button>
+                {/*<Link to={`/editNotes/${(description[displayDescription(description)])._id}`}>
+
+                </Link>*/}
+            </center>
         </section>
 
 
