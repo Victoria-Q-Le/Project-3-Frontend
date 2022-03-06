@@ -83,8 +83,8 @@ console.log(description[displayDescription(description)]);
             <h1 className='msg'>{description[displayDescription(description)]?.description}</h1>
             <center>
                 <button className='btndlt' onClick={(event)=> {handleDelete(description[displayDescription(description)])}}>Delete Note</button></center><br/><br/><br/>
-                {/* <button className='btnedt' onClick={(event)=> {handleEdit(description[displayDescription(description)])}}>edit note</button> */}
-                {/* <Link to={`/editNotes/${(description[displayDescription(description)])._id}`}>Edit Notes</Link> */}
+                <button className='btnedt' onClick={(event)=> {handleEdit(description[displayDescription(description)])}}>edit note</button>
+                <Link to={`/editNotes/${(description[displayDescription(description)])?._id}`}>Edit Notes</Link>
         </section>
 
 
