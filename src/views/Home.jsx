@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Header from '../components/Header.jsx'
 
 
@@ -12,6 +12,8 @@ function Home() {
 
   const [description, setDescription] = useState([])
 
+  const navigate = useNavigate()
+
   useEffect(()=>{
     axios
           .get( 'http://localhost:3000/notes')
@@ -20,8 +22,8 @@ function Home() {
           })
   },[])
 
-  const hanldeNewDescriptionChange = (event) =>{
-    setNewDescription(event.target.value);
+  const handleNewDescriptionChange = (event) => {
+    setNewDescription(event.target.value)
   }
 
   const handleNewDescriptionFormSubmit = (event) => {
@@ -33,6 +35,9 @@ function Home() {
             description:newDescription
           }
         )
+        .then(
+          navigate('/dashboard')
+        )
   }
 
 
@@ -43,26 +48,6 @@ function Home() {
   }
 
 
-
-const handleEdit = (descriptionData)=>{
-    axios
-        .put(
-            `http://localhost:3000/notes/${descriptionData._id}`,
-            {
-                description:descriptionData?.description,
-            }
-        )
-        .then(()=>{
-            axios
-                .get('http://localhost:3000/notes')
-                .then((response)=>{
-                    // setDescription(response.data)
-                    console.log(response.data);
-                })
-        })
-}
-
-console.log(description[displayDescription(description)]);
   return (
 
     <main>
@@ -81,19 +66,10 @@ console.log(description[displayDescription(description)]);
         <center><h1 className='subtitle2'>Send a positive messege to a stranger</h1>
 
            <form className='form' onSubmit={handleNewDescriptionFormSubmit}>
-                  User: <input type='text' /><br/>
-                  Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
+                  Note: <input type='text' onChange={handleNewDescriptionChange}/><br/>
                   <input type='submit' className='btn' value='Send Love'/>
             </form></center>
           </section>
-
-        <section>
-        {/* <form className='form' onSubmit={handleEdit(description[displayDescription(description)])}>
-                        User: <input type='text' /><br/>
-                        Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
-                        <input type='submit' className='btn' value='Send Love'/>
-                    </form> */}
-        </section>
 
     </main>
 

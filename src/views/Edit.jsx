@@ -1,12 +1,12 @@
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 
 export default function Edit() {
     const {id} = useParams()
-    // console.log(id);
-    const [description, setDescription] = useState([])
+    const navigate = useNavigate ()
+    const [note, setNote] = useState([])
     const [newDescription, setNewDescription] = useState('')
 
 
@@ -14,50 +14,35 @@ export default function Edit() {
       axios
             .get( `http://localhost:3000/notes/${id}`)
             .then((response)=>{
-            setDescription(response.data)
+              setNote(response.data)
             })
     },[])
 
 
 
-    const displayDescription = (params) => {
-        return Math.floor(Math.random()  * params.length )
-    }
-
-    const hanldeNewDescriptionChange = (event) =>{
+    const handleNewDescriptionChange = (event) =>{
         setNewDescription(event.target.value);
       }
 
-    const handleEdit = (id)=>{
+    const handleEdit = (event) =>{
+        event.preventDefault()
         axios
-            .put(
-                `http:localhost:3000/notes/${id}`,
-                {
-                    description:id?.description,
-                }
-            )
-            .then(()=>{
-                axios
-                    .get('http://localhost:3000/notes')
-                    .then((response)=>{
-                        // setDescription(response.data)
-                        console.log(response.data);
-                    })
-            })
+          .put(`http://localhost:3000/notes/${id}`,
+            {
+              description: newDescription
+            }
+          )
+          .then(
+            navigate('/dashboard')
+          )
     }
-    console.log(description);
-    console.log(id);
+
   return(
     <div>
-    Edit
-
-
-
-            <h1>{description.description}</h1>
+    Edit "{note.description}"  Message
             <section>
-              <form className='form' onSubmit={handleEdit(id)}>
-                        User: <input type='text' /><br/>
-                        Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
+              <form className='form' onSubmit={handleEdit}>
+                        Note: <input type='text' placeholder='Enter your message here' onChange={handleNewDescriptionChange}/><br/>
                         <input type='submit' className='btn' value='Send Love'/>
               </form>
             </section>
