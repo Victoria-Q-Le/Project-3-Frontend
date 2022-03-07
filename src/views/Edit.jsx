@@ -5,18 +5,19 @@ import axios from 'axios';
 
 export default function Edit() {
     const {id} = useParams()
-    console.log(id);
+    // console.log(id);
     const [description, setDescription] = useState([])
     const [newDescription, setNewDescription] = useState('')
 
 
     useEffect(()=>{
       axios
-            .get( 'http://localhost:3000/notes')
+            .get( `http://localhost:3000/notes/${id}`)
             .then((response)=>{
             setDescription(response.data)
             })
     },[])
+
 
 
     const displayDescription = (params) => {
@@ -27,31 +28,34 @@ export default function Edit() {
         setNewDescription(event.target.value);
       }
 
-    const handleEdit = (descriptionData)=>{
+    const handleEdit = (id)=>{
         axios
             .put(
-                `http://localhost:3000/notes/${descriptionData._id}`,
+                `http:localhost:3000/notes/${id}`,
                 {
-                    description:descriptionData?.description,
+                    description:id?.description,
                 }
             )
             .then(()=>{
                 axios
                     .get('http://localhost:3000/notes')
                     .then((response)=>{
-                        setDescription(response.data)
+                        // setDescription(response.data)
                         console.log(response.data);
                     })
             })
     }
-
+    console.log(description);
+    console.log(id);
   return(
     <div>
     Edit
-            <h1 className='msg'>{description[displayDescription(description)]?.description}</h1>
 
+
+
+            <h1>{description.description}</h1>
             <section>
-              <form className='form' onSubmit={handleEdit(description[displayDescription(description)])}>
+              <form className='form' onSubmit={handleEdit(id)}>
                         User: <input type='text' /><br/>
                         Note: <input type='text' onChange={hanldeNewDescriptionChange}/><br/>
                         <input type='submit' className='btn' value='Send Love'/>
