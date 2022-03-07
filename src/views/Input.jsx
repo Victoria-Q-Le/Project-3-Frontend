@@ -1,12 +1,14 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
-import Header from '../components/Header.jsx'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 
 
 
-function Home() {
+function Input() {
 
   const [newDescription, setNewDescription] = useState('')
 
@@ -36,40 +38,25 @@ function Home() {
           }
         )
         .then(
-          navigate('/dashboard')
+          toast('Thank you for your kind words'),
         )
   }
 
 
 
-
-  const displayDescription = (params) => {
-      return Math.floor(Math.random()  * params.length )
-  }
-
-
   return (
 
     <main>
-
-        <Header />
-        <h2 className='subtitle'>Somone wrote this for you</h2>
-
-
         <section>
-            <h1 className='msg'>{description[displayDescription(description)]?.description}</h1>
-        </section>
+          <center>
+            <h1 className='subtitle2'>Lets Send Some Positive Vibes</h1>
 
-
-
-        <section>
-        <center><h1 className='subtitle2'>Send a positive messege to a stranger</h1>
-
-           <form className='form' onSubmit={handleNewDescriptionFormSubmit}>
+            <form className='form' onSubmit={handleNewDescriptionFormSubmit}>
                   Note: <input type='text' onChange={handleNewDescriptionChange}/><br/>
                   <input type='submit' className='btn' value='Send Love'/>
-            </form></center>
-          </section>
+            </form>
+          </center>
+        </section>
 
     </main>
 
@@ -80,4 +67,4 @@ function Home() {
 
 }
 
-export default Home;
+export default Input;

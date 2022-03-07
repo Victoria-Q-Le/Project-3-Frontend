@@ -1,6 +1,8 @@
 import {useParams, useNavigate} from 'react-router-dom'
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
 
 
 export default function Edit() {
@@ -12,7 +14,7 @@ export default function Edit() {
 
     useEffect(()=>{
       axios
-            .get( `http://localhost:3000/notes/${id}`)
+            .get( `https://p3-note-it.herokuapp.com/notes${id}`)
             .then((response)=>{
               setNote(response.data)
             })
@@ -27,7 +29,7 @@ export default function Edit() {
     const handleEdit = (event) =>{
         event.preventDefault()
         axios
-          .put(`http://localhost:3000/notes/${id}`,
+          .put(`https://p3-note-it.herokuapp.com/notes${id}`,
             {
               description: newDescription
             }
@@ -39,6 +41,7 @@ export default function Edit() {
 
   return(
     <div>
+    <Header />
     Edit "{note.description}"  Message
             <section>
               <form className='form' onSubmit={handleEdit}>

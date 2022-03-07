@@ -8,7 +8,7 @@ const Dashboard = () => {
 
   useEffect(()=>{
       axios
-          .get('http://localhost:3000/notes')
+          .get('https://p3-note-it.herokuapp.com/notes')
           .then((response)=>{
               setNotes(response.data)
           })
@@ -16,10 +16,10 @@ const Dashboard = () => {
 
   const handleDelete = (noteData) => {
     axios
-      .delete(`http://localhost:3000/notes/${noteData._id}`)
+      .delete(`https://p3-note-it.herokuapp.com/notes${noteData._id}`)
       .then (() => {
         axios
-        .get('http://localhost:3000/notes')
+        .get('https://p3-note-it.herokuapp.com/notes')
         .then((response) => {
           setNotes(response.data)
         })
@@ -28,18 +28,21 @@ const Dashboard = () => {
 
   return <>
     <Header />
-    <h1>Dashboard</h1>
     <section>
       <h2>Notes List</h2>
-      <ul>
-        {notes.map((note) => {
-          return <li key={note._id}>
-            {note?.description}
-            <button className='btn btndlt' onClick={(event) => {handleDelete(note)}}>Delete</button>
-            <button className ='btn btndlt'><Link to={`/editNotes/${note._id}`}>Edit Notes</Link></button>
-          </li>
+      <div className='container'>
+        <div className='row row-cols-1 row-cols-md-3 g-4'>
+          {notes.map((note) => {
+          return <div className='col' key={note._id}>
+            <div className ='card-body'>
+            <h5 className ='card-title'>{note?.description}</h5>
+              <button className='btn btn-danger btn-sm' onClick={(event) => {handleDelete(note)}}>Delete</button>
+              <button className ='btn btn-primary btn-sm'><Link to={`/editNotes/${note._id}`}>Edit Notes</Link></button>
+            </div>
+            </div>
         })}
-      </ul>
+        </div>
+      </div>
     </section>
   </>
 }
