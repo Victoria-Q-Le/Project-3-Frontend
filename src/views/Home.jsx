@@ -61,17 +61,6 @@ const handleEdit = (descriptionData)=>{
                 })
         })
 }
-const handleDelete = (descriptionData)=>{
-    axios
-         .delete(`http://localhost:3000/notes/${descriptionData._id}`)
-         .then(()=>{
-              axios
-                  .get('http://localhost:3000/notes')
-                  .then((response)=>{
-                      setDescription(response.data)
-                  })
-         })
-}
 
 console.log(description[displayDescription(description)]);
   return (
@@ -84,10 +73,6 @@ console.log(description[displayDescription(description)]);
 
         <section>
             <h1 className='msg'>{description[displayDescription(description)]?.description}</h1>
-            <center>
-                <button className='btndlt' onClick={(event)=> {handleDelete(description[displayDescription(description)])}}>Delete Note</button></center><br/><br/><br/>
-                <button className='btnedt' onClick={(event)=> {handleEdit(description[displayDescription(description)])}}>edit note</button>
-                <Link to={`/editNotes/${(description[displayDescription(description)])?._id}`}>Edit Notes</Link>
         </section>
 
 
