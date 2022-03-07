@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const handleDelete = (noteData) => {
     axios
-      .delete(`https://p3-note-it.herokuapp.com/notes${noteData._id}`)
+      .delete(`https://p3-note-it.herokuapp.com/notes/${noteData._id}`)
       .then (() => {
         axios
         .get('https://p3-note-it.herokuapp.com/notes')
